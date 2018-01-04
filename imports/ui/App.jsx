@@ -1,10 +1,13 @@
-import React, {Component} from 'react';
-import {Card, Container, Grid} from 'semantic-ui-react'
+import React, {Component, PropTypes} from 'react';
+import {createContainer} from 'meteor/react-meteor-data';
+import {Card, Container, Grid} from 'semantic-ui-react';
+
+import {Candidates} from '../api/candidates.js';
 
 import Candidate from './Candidate.jsx';
 
 
-export default class App extends Component {
+class App extends Component {
 
 	getCandidates() {
 		return [
@@ -15,7 +18,7 @@ export default class App extends Component {
 	}
 
 	renderCandidates(){
-		return this.getCandidates().map((candidate) => (
+		return this.props.candidates.map((candidate) => (
 			<Candidate key={candidate._id} candidate={candidate}/> 
 		));
 	}
@@ -39,3 +42,9 @@ export default class App extends Component {
 
 
 }
+
+export default createContainer(() => {
+	return{
+		candidates: Candidates.find({}).fetch(),
+	};
+}, App);
