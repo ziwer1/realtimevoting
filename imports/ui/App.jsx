@@ -29,7 +29,7 @@ class App extends Component {
 		return(
 			<Container>
 				<header>
-					<h1> Candidates List </h1>
+					<h1>Kampala LC5 Candidates List </h1>
 				</header>
 				<Card.Group>
 					{this.renderCandidates()}
